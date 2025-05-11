@@ -1,9 +1,10 @@
 ### Technologies
+
 - ⚡ [React.js](https://react.dev/)
 - 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
 - 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
 - ✅ Strict Mode for TypeScript and React 18
-- 📏 Linter with [ESLint](https://eslint.org) 
+- 📏 Linter with [ESLint](https://eslint.org)
 - 💖 Code Formatter with [Prettier](https://prettier.io)
 - 🦊 Husky for Git Hooks
 - 🚫 Lint-staged for running linters on Git staged files
@@ -53,5 +54,3 @@ Open http://localhost:5173 with your favorite browser to see your project.
 ```
 
 You have access to the whole code source if you need further customization. The provided code is only example for you to start your project. The sky is the limit 🚀.
-
-

@@ -10,4 +10,4 @@ export type Product = {
   type: string;
   quantity: string;
   status: string;
-}
+};
