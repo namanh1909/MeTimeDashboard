@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import {
   ColumnDef,
   flexRender,
@@ -11,6 +12,17 @@ import {
   getFilteredRowModel,
   VisibilityState,
 } from '@tanstack/react-table';
+import { EyeIcon } from 'lucide-react';
+
+import { DataTablePagination } from '@/components/common';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -19,16 +31,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { EyeIcon } from 'lucide-react';
-import { DataTablePagination } from '@/components/common';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -101,7 +103,8 @@ const DataTable = <TData, TValue>({
                       {column.id}
                     </DropdownMenuCheckboxItem>
                   );
-                })}a
+                })}
+              a
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

@@ -1,5 +1,6 @@
-
-
+import { Overview } from '@/components/dashboard';
+import { RecentProducts } from '@/components/dashboard';
+import RecentSales from '@/components/dashboard/RecentSales/RecentSales';
 import {
   Card,
   CardContent,
@@ -8,12 +9,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Overview from '@/components/dashboard/Overview/Overview';
-import RecentProducts from '@/components/dashboard/RecentProducts/RecentProducts';
-import RecentSales from '@/components/dashboard/RecentSales/RecentSales';
 
 const Dashboard = () => {
-
   return (
     <>
       <div className="flex-col md:flex">

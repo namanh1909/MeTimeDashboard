@@ -1,12 +1,17 @@
+import {
+  loginRequestType,
+  LoginResponseType,
+  logoutRequestType,
+  LogoutResponseType,
+} from './type';
 import axiosClient from '@/apis/axios-client';
-import { loginRequestType, logoutRequestType } from './type';
 
 const baseUrl = 'auth';
 
 const authApi = {
-  login: (params: loginRequestType): Promise<any> =>
+  login: (params: loginRequestType): Promise<LoginResponseType> =>
     axiosClient.post(`${baseUrl}/login`, params),
-  logout: (params: logoutRequestType): Promise<any> =>
+  logout: (params: logoutRequestType): Promise<LogoutResponseType> =>
     axiosClient.post(`${baseUrl}/logout`, params),
 };
 

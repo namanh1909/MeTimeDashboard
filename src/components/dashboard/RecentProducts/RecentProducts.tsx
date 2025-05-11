@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui';
 import {
   Table,
   TableBody,
@@ -6,8 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+} from '@/components/ui';
 
 const recentProducts = [
   {

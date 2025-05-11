@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/components/ui/button';
+
 import Login from './components/Login';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const AuthenticationPage = () => {
   return (
-    <div className='h-screen w-screen'>
+    <div className="h-screen w-screen">
       <div className="relative h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           to="#"
           className={cn(
             buttonVariants({ variant: 'outline' }),
-            'absolute right-4 top-4 md:right-8 md:top-8'
+            'absolute right-4 top-4 md:right-8 md:top-8',
           )}
         >
           Request to create an account``

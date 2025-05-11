@@ -9,9 +9,9 @@ import { ToasterConfig } from '@/components';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-      <QueryProvider>
-        <ToasterConfig />
-        <Routes />
-      </QueryProvider>
+    <QueryProvider>
+      <ToasterConfig />
+      <Routes />
+    </QueryProvider>
   </React.StrictMode>,
 );

@@ -1,5 +1,5 @@
+import { Brand } from './type';
 import axiosClient from '@/apis/axios-client';
-import { Brand, BrandMutation } from './type';
 
 const baseUrl = 'brands';
 

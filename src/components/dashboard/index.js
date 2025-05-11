@@ -5,4 +5,3 @@ export { default as UserNav } from './UserNav';
 export { default as RecentProducts } from './RecentProducts';
 export { default as SidebarNav } from './SidebarNav';
 export { default as MobileNav } from './MobileNav';
-export { default as LanguageSwitcher } from './LanguageSwitcher';

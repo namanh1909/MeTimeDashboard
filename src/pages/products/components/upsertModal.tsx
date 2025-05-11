@@ -1,5 +1,9 @@
 import React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
+
+import { Button, ErrorMessage } from '@/components/ui';
 import {
   Dialog,
   DialogContent,
@@ -7,26 +11,24 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { useModalStore } from '@/hooks';
-import { Button, Input, ErrorMessage } from '@/components/ui';
+} from '@/components/ui';
+import { ImagePicker } from '@/components/ui';
+import { InputForm } from '@/components/ui';
 import { createProductSchema } from '@/features/products/schemas';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { InputForm } from '@/components/ui/inputForm';
-import ImagePicker from '@/components/ui/imagePicker';
+import { useModalStore } from '@/hooks';
 
-type ProductFormInputs = {
+interface ProductFormInputs {
   productName: string;
-  productImageDetail: File[];
+  productImageDetail: (File | null | undefined)[];
   descriptionProduct: string;
-  price: string;
+  price: number;
   brandId: string;
-  thumbnail: string | File;
+  thumbnail: string;
   size: string;
   type: string;
   quantity: string;
   status: string;
-};
+}
 
 const UpsertProductModal: React.FC = () => {
   const {
@@ -40,7 +42,7 @@ const UpsertProductModal: React.FC = () => {
       productName: '',
       productImageDetail: [],
       descriptionProduct: '',
-      price: '',
+      price: 0, // Change from '' to 0
       brandId: '',
       thumbnail: '',
       size: '',
@@ -53,8 +55,7 @@ const UpsertProductModal: React.FC = () => {
   const open = useModalStore((state) => state.open);
   const close = useModalStore((state) => state.close);
 
-  const onSubmit = (data: ProductFormInputs) => {
-    console.log(data);
+  const onSubmit = (_data: ProductFormInputs) => {
     reset();
     close();
   };
@@ -76,12 +77,15 @@ const UpsertProductModal: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="thumbnail"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Thumbnail
               </label>
               <ImagePicker control={control} name="thumbnail" />
             </div>
-           
+
             {errors.thumbnail && (
               <ErrorMessage message={errors.thumbnail.message as string} />
             )}

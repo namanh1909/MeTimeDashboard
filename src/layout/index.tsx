@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import MainNav from '@/components/dashboard/MainNav/MainNav';
-import { dashboardConfig } from '@/config/dashboardConfig';
-import UserNav from '@/components/dashboard/UserNav/UserNav';
 import SidebarNav from '@/components/dashboard/SidebarNav/SidebarNav';
+import UserNav from '@/components/dashboard/UserNav/UserNav';
+import { dashboardConfig } from '@/config/dashboardConfig';
 
 const RootLayout = ({ children }: { children?: React.ReactNode }) => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ const RootLayout = ({ children }: { children?: React.ReactNode }) => {
       <div className="grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
         <aside className="w-[200px] flex-col md:flex pl-8">
           <SidebarNav
-            items={dashboardConfig.sidebarNav.map(item => ({
+            items={dashboardConfig.sidebarNav.map((item) => ({
               ...item,
               onClick: () => handleSidebarNavClick(item.href as string),
             }))}

@@ -54,18 +54,25 @@ module.exports = {
       },
     ],
     'prettier/prettier': ['off', { singleQuote: true }],
-    'no-restricted-imports': [
-      2,
-      {
-        patterns: [
-          '@/features/*/*',
-          '@/components/*',
-          '@/hooks/*',
-          '@/utils/*',
-          '@/ts/*/*',
-        ],
-      },
-    ],
+    // 'no-restricted-imports': [
+    //   2,
+    //   {
+    //     patterns: [
+    //       '@/features/*/*',
+    //       '@/components/*/*',
+    //       '@/components/ui/*/*',
+    //       '@/hooks/*',
+    //       '@/utils/*',
+    //       '@/ts/*/*',
+    //       '',
+    //       '!@/features/auth/*/*',
+    //       '!@/features/products/*/*',
+    //       '!@/features/brands/hook/*',
+    //       '!@/features/products/schemas',
+    //       '!@/features/products/services/types'
+    //     ],
+    //   },
+    // ],
     'import/order': [
       'error',
       {

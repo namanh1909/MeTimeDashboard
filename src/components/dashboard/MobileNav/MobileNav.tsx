@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { Link } from 'react-router-dom';
+
+import { useLockBody } from '@/hooks';
 import { cn } from '@/lib/utils';
 import { MainNavItem } from '@/types';
-import useLockBody from '@/hooks/use-lock-body';
 
 interface MobileNavProps {
   items: MainNavItem[];
@@ -24,9 +26,9 @@ const MobileNav = ({ items, children }: MobileNavProps) => {
           {/* <span className="font-bold">{siteConfig.name}</span> */}
         </Link>
         <nav className="grid grid-flow-row auto-rows-max text-sm">
-          {items.map((item, index) => (
+          {items.map((item) => (
             <Link
-              key={index}
+              key={item.id}
               to={item.disabled ? '#' : item.href}
               className={cn(
                 'flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline',

@@ -1,5 +1,10 @@
 import React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ListPlus } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
+
+import { Button, Input, ErrorMessage } from '@/components/ui';
 import {
   Dialog,
   DialogTrigger,
@@ -8,12 +13,9 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { useModalStore } from '@/hooks';
-import { Button, Input, ErrorMessage } from '@/components/ui';
+} from '@/components/ui';
 import { createProductSchema } from '@/features/products/schemas';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { ListPlus } from 'lucide-react';
+import { useModalStore } from '@/hooks';
 
 type ProductFormInputs = {
   name: string;
@@ -41,16 +43,18 @@ const UpsertProductModal: React.FC = () => {
   const open = useModalStore((state) => state.open);
   const close = useModalStore((state) => state.close);
 
-  const onSubmit = (data: ProductFormInputs) => {
-    console.log(data);
+  const onSubmit = (_data: ProductFormInputs) => {
     reset();
     close();
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={isOpen ? close : open}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(isDialogOpen) => (isDialogOpen ? open() : close())}
+    >
       <DialogTrigger asChild>
-        <Button onClick={open}>
+        <Button onClick={() => open()}>
           <ListPlus className="mr-2 h-4 w-4" /> Add New Product
         </Button>
       </DialogTrigger>

@@ -1,11 +1,13 @@
-import { useBrandsListQuery } from '@/features/brands/hooks/use-brand-query';
+import { FC } from 'react';
+
+import { ListPlus } from 'lucide-react';
+
 import { columns } from './components/columns';
 import DataTable from './components/data-table';
 import UpsertProductModal from './components/upsert-modal';
-import { FC } from 'react';
-import Spinner from '@/components/ui/spinner';
 import { Button } from '@/components/ui';
-import { ListPlus } from 'lucide-react';
+import { Spinner } from '@/components/ui';
+import { useBrandsListQuery } from '@/features/brands/hooks/use-brand-query';
 import { useModalStore } from '@/hooks';
 
 const Brands: FC = () => {

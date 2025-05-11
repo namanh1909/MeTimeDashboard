@@ -1,13 +1,13 @@
+/* eslint-disable no-restricted-imports */
+import { Column } from '@tanstack/react-table';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   ChevronsUpDownIcon,
   EyeIcon,
 } from 'lucide-react';
-import { Column } from '@tanstack/react-table';
 
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {

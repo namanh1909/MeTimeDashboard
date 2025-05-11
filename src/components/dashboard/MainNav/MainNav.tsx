@@ -1,14 +1,15 @@
 'use client';
 
 import * as React from 'react';
+
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 //import { siteConfig } from "@/config/site"
+import MobileNav from '../MobileNav/MobileNav';
+import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { MainNavItem } from '@/types';
-import { Icons } from '@/components/icons/icons';
-import MobileNav from '../MobileNav/MobileNav';
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -30,16 +31,16 @@ const MainNav = ({ items, children }: MainNavProps) => {
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
-          {items?.map((item, index) => (
+          {items?.map((item) => (
             <Link
-              key={index}
+              key={item.id}
               to={item.disabled ? '#' : item.href}
               className={cn(
                 'flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm',
                 item.href.startsWith(`/${segment}`)
                   ? 'text-foreground'
                   : 'text-foreground/60',
-                item.disabled && 'cursor-not-allowed opacity-80'
+                item.disabled && 'cursor-not-allowed opacity-80',
               )}
             >
               {item.title}

@@ -2,6 +2,7 @@
 
 //import * as React from 'react';
 import { useState } from 'react';
+
 import {
   ColumnDef,
   flexRender,
@@ -14,6 +15,17 @@ import {
   getFilteredRowModel,
   VisibilityState,
 } from '@tanstack/react-table';
+import { EyeIcon } from 'lucide-react';
+
+import { DataTablePagination } from '@/components/common';
+import { Button } from '@/components/ui';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui';
+import { Input } from '@/components/ui';
 import {
   Table,
   TableBody,
@@ -21,17 +33,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { EyeIcon } from 'lucide-react';
-import { DataTablePagination } from '@/components/common';
+} from '@/components/ui';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -119,7 +121,7 @@ const DataTable = <TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -138,7 +140,7 @@ const DataTable = <TData, TValue>({
                     <TableCell className="p-2" key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

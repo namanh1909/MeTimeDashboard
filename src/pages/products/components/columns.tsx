@@ -1,18 +1,18 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Edit, Trash2 } from 'lucide-react';
+import { MoreHorizontal, Edit, Trash2 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { DataTableColumnHeader } from '@/components/common';
+import { Button } from '@/components/ui';
+import { Checkbox } from '@/components/ui';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import DataTableColumnHeader from '@/components/common/DataTableColumnHeader/DataTableColumnHeader';
+} from '@/components/ui/';
 import { Product } from '@/features/products/services/types';
 
 // This type is used to define the shape of our data.
@@ -123,7 +123,7 @@ export const columns: ColumnDef<Product>[] = [
   {
     id: 'actions',
     cell: ({ row }) => {
-      const product = row.original;
+      const _product = row.original;
 
       return (
         <DropdownMenu>

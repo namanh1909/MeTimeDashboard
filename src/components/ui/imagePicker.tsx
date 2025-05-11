@@ -7,10 +7,7 @@ type ImagePickerProps = {
   name: string;
 };
 
-const ImagePicker: React.FC<ImagePickerProps> = ({
-  control,
-  name,
-}) => {
+const ImagePicker: React.FC<ImagePickerProps> = ({ control, name }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleIconClick = () => {
@@ -69,4 +66,4 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
   );
 };
 
-export default ImagePicker;
+export { ImagePicker };

@@ -1,7 +1,7 @@
 import { CreditCard, LogOut, Settings, User } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui';
+import { Button } from '@/components/ui';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,14 +9,11 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Link } from 'react-router-dom';
-import { useAuthQuery } from '@/features/auth/hooks/use-auth-query';
+} from '@/components/ui';
+import { useAuthQuery } from '@/features/auth/hooks';
 const UserNav = () => {
   const { logoutMutation } = useAuthQuery();
-  
 
   return (
     <DropdownMenu>
@@ -53,7 +50,10 @@ const UserNav = () => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer" onClick={() => logoutMutation.mutate()}>
+        <DropdownMenuItem
+          className="cursor-pointer"
+          onClick={() => logoutMutation.mutate()}
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>

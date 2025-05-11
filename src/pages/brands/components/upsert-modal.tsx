@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
+
+import { Button, Input, ErrorMessage } from '@/components/ui';
 import {
   Dialog,
   DialogContent,
@@ -7,16 +11,14 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog';
-import { useModalStore } from '@/hooks';
-import { Button, Input, ErrorMessage } from '@/components/ui';
-import { yupResolver } from '@hookform/resolvers/yup';
-import ImagePicker from '@/components/ui/imagePicker';
-import { createBrandSchema } from '@/features/brands/schemas';
+} from '@/components/ui';
+import { ImagePicker } from '@/components/ui';
 import {
   useAddBrandMutation,
   useUpdateBrandMutation,
 } from '@/features/brands/hooks/use-brand-query';
+import { createBrandSchema } from '@/features/brands/schemas';
+import { useModalStore } from '@/hooks';
 
 type BrandFormInput = {
   id?: string;
@@ -44,9 +46,12 @@ const UpsertProductModal: React.FC = () => {
   const isOpen = useModalStore((state) => state.isOpen);
   const open = useModalStore((state) => state.open);
   const close = useModalStore((state) => state.close);
-  const params = useModalStore((state) => state.params);
-
-  console.log('params', params);
+  const params = useModalStore((state) => state.params) as {
+    _id?: string;
+    brandName?: string;
+    brandImage?: string;
+    description?: string;
+  };
 
   const { mutate: addBrand } = useAddBrandMutation();
   const { mutate: updateBrand } = useUpdateBrandMutation();
@@ -79,11 +84,11 @@ const UpsertProductModal: React.FC = () => {
   useEffect(() => {
     if (params?._id) {
       setValue('id', params._id);
-      setValue('brandName', params.brandName);
+      setValue('brandName', params.brandName as string);
       setValue('brandImage', params.brandImage);
       setValue('description', params.description);
     }
-  }, [isOpen]);
+  }, [isOpen, params, setValue]);
 
   const onOpenChange = () => {
     if (isOpen) return close();
@@ -105,7 +110,7 @@ const UpsertProductModal: React.FC = () => {
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex justify-center mb-4">
-            <ImagePicker control={control} name="brandImage"  />
+            <ImagePicker control={control} name="brandImage" />
           </div>
           <div className="grid gap-4">
             <Controller

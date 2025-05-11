@@ -1,10 +1,7 @@
-// import { User } from "@prisma/client"
-// import type { Icon } from "lucide-react"
-
-import { Icons } from "@/components/icons/icons";
-
+import { Icons } from '@/components/icons/';
 
 export type NavItem = {
+  id: number;
   title: string;
   href: string;
   disabled?: boolean;

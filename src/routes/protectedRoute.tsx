@@ -1,6 +1,8 @@
-import { AuthenticationPage } from '@/pages';
 import React, { FC, ReactNode } from 'react';
+
 import { Navigate, useLocation } from 'react-router-dom';
+
+import { AuthenticationPage } from '@/pages';
 
 interface ProtectedRouteProps {
   isAuthenticated: boolean;

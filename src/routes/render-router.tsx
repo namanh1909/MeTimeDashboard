@@ -1,15 +1,10 @@
 import { FC } from 'react';
 
 import { Navigate, Outlet, useRoutes } from 'react-router-dom';
-import LayoutComponent from '@/layout';
-import {
-  Brands,
-  Dashboard,
-  Orders,
-  Products,
-  Users,
-} from '@/pages';
+
 import ProtectedRoute from './protectedRoute';
+import LayoutComponent from '@/layout';
+import { Brands, Dashboard, Orders, Products, Users } from '@/pages';
 
 const RenderRouter: FC = () => {
   const storedToken = localStorage.getItem('token');

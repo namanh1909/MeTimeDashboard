@@ -1,73 +1,73 @@
-import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { toast } from 'react-hot-toast';
+// import { createQueryKeys } from '@lukemorales/query-key-factory';
+// import { useMutation, useQuery } from '@tanstack/react-query';
+// import { toast } from 'react-hot-toast';
 
-import todoApi from '../services/todo.api';
-import { TodoData } from '../services/types';
-import { QueryOptions } from '@/ts/types';
+// import todoApi from '../services/todo.api';
+// import { TodoData } from '../services/types';
+// import { QueryOptions } from '@/ts/types';
 
-const todos = createQueryKeys('todos', {
-  list: () => ({
-    queryKey: ['todos'],
-    queryFn: () => todoApi.getList(),
-  }),
-  detail: (id: string) => ({
-    queryKey: [id],
-    queryFn: () => todoApi.getDetail(id),
-  }),
-});
+// const todos = createQueryKeys('todos', {
+//   list: () => ({
+//     queryKey: ['todos'],
+//     queryFn: () => todoApi.getList(),
+//   }),
+//   detail: (id: string) => ({
+//     queryKey: [id],
+//     queryFn: () => todoApi.getDetail(id),
+//   }),
+// });
 
-export const useTodoListQuery = (
-  options: QueryOptions<ApiResponse<TodoData>> = {},
-) => {
-  return useQuery({
-    ...todos.list(),
-    ...options,
-  });
-};
+// export const useTodoListQuery = (
+//   options: QueryOptions<ApiResponse<TodoData>> = {},
+// ) => {
+//   return useQuery({
+//     ...todos.list(),
+//     ...options,
+//   });
+// };
 
-export const useTodoDetailQuery = (
-  id: string,
-  options: QueryOptions<ApiResponse<TodoData>> = {},
-) => {
-  return useQuery({
-    ...todos.detail(id),
-    ...options,
-  });
-};
+// export const useTodoDetailQuery = (
+//   id: string,
+//   options: QueryOptions<ApiResponse<TodoData>> = {},
+// ) => {
+//   return useQuery({
+//     ...todos.detail(id),
+//     ...options,
+//   });
+// };
 
-export const useAddTodoMutation = () => {
-  return useMutation({
-    mutationFn: todoApi.add,
-    onSuccess: () => {
-      void toast.success('Create new Todo successfully');
-    },
-    onError: () => {
-      void toast.error('Create new Todo failed');
-    },
-  });
-};
+// export const useAddTodoMutation = () => {
+//   return useMutation({
+//     mutationFn: todoApi.add,
+//     onSuccess: () => {
+//       void toast.success('Create new Todo successfully');
+//     },
+//     onError: () => {
+//       void toast.error('Create new Todo failed');
+//     },
+//   });
+// };
 
-export const useUpdateTodoMutation = () => {
-  return useMutation({
-    mutationFn: todoApi.update,
-    onSuccess: () => {
-      void toast.success('Update Todo successfully');
-    },
-    onError: () => {
-      void toast.error('Update Todo failed');
-    },
-  });
-};
+// export const useUpdateTodoMutation = () => {
+//   return useMutation({
+//     mutationFn: todoApi.update,
+//     onSuccess: () => {
+//       void toast.success('Update Todo successfully');
+//     },
+//     onError: () => {
+//       void toast.error('Update Todo failed');
+//     },
+//   });
+// };
 
-export const useDeleteTodoMutation = () => {
-  return useMutation({
-    mutationFn: todoApi.delete,
-    onSuccess: () => {
-      void toast.success('Delete Todo successfully');
-    },
-    onError: () => {
-      void toast.error('Delete Todo failed');
-    },
-  });
-};
+// export const useDeleteTodoMutation = () => {
+//   return useMutation({
+//     mutationFn: todoApi.delete,
+//     onSuccess: () => {
+//       void toast.success('Delete Todo successfully');
+//     },
+//     onError: () => {
+//       void toast.error('Delete Todo failed');
+//     },
+//   });
+// };

@@ -1,8 +1,9 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Edit, Trash2 } from 'lucide-react';
+import { MoreHorizontal, Edit, Trash2 } from 'lucide-react';
 
+import DataTableColumnHeader from '@/components/common/DataTableColumnHeader/DataTableColumnHeader';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -12,9 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import DataTableColumnHeader from '@/components/common/DataTableColumnHeader/DataTableColumnHeader';
 import { Brand } from '@/features/brands/services/type';
-import { useModalStore } from '@/hooks';
+import { useModalStore } from '@/hooks/';
+
+// Removed the top-level hook call and will use it inside the cell function
 
 // This type is used to define the shape of our data.
 
@@ -44,7 +46,6 @@ export const columns: ColumnDef<Brand>[] = [
     header: 'Thumbnail',
     cell: ({ row }) => {
       const thumbnail: string = row.getValue('imageURL');
-      console.log('thumbnail', thumbnail);
       return (
         <div className="flex items-center">
           <img
@@ -77,7 +78,6 @@ export const columns: ColumnDef<Brand>[] = [
     id: 'actions',
     cell: ({ row }) => {
       const brand = row.original;
-      const open = useModalStore((state) => state.open);
 
       return (
         <DropdownMenu>
@@ -90,7 +90,10 @@ export const columns: ColumnDef<Brand>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuItem
               className="cursor-pointer"
-              onClick={() => open({ params: brand })}
+              onClick={() => {
+                const open = useModalStore((state) => state.open);
+                open({ params: brand });
+              }}
             >
               <Edit className="mr-2 h-4 w-4" /> Edit
             </DropdownMenuItem>

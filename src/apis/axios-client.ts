@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 import { toast } from 'react-hot-toast';
 
 import { LOGIN_PATH } from '@/data';
@@ -13,10 +18,13 @@ const axiosClient = axios.create({
 });
 
 let isRefreshing = false;
-let failedQueue: { resolve: (token: string | null) => void; reject: (error: any) => void }[] = [];
+let failedQueue: {
+  resolve: (token: string | null) => void;
+  reject: (error: null | undefined) => void;
+}[] = [];
 
-const processQueue = (error: any, token: string | null = null) => {
-  failedQueue.forEach(prom => {
+const processQueue = (error: null | undefined, token: string | null = null) => {
+  failedQueue.forEach((prom) => {
     if (error) {
       prom.reject(error);
     } else {
@@ -58,19 +66,23 @@ axiosClient.interceptors.response.use(
     return response?.data;
   },
   function (error: AxiosError) {
-    const originalRequest = error.config as AxiosRequestConfig & { _retry?: boolean };
+    const originalRequest = error.config as AxiosRequestConfig & {
+      _retry?: boolean;
+    };
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
         return new Promise<string | null>((resolve, reject) => {
           failedQueue.push({ resolve, reject });
-        }).then(token => {
-          if (originalRequest.headers) {
-            originalRequest.headers['Authorization'] = 'Bearer ' + token;
-          }
-          return axiosClient(originalRequest);
-        }).catch(err => {
-          return Promise.reject(err);
-        });
+        })
+          .then((token) => {
+            if (originalRequest.headers) {
+              originalRequest.headers['Authorization'] = 'Bearer ' + token;
+            }
+            return axiosClient(originalRequest);
+          })
+          .catch((err) => {
+            return Promise.reject(err);
+          });
       }
 
       originalRequest._retry = true;
@@ -78,21 +90,27 @@ axiosClient.interceptors.response.use(
 
       const refreshToken = localStorage.getItem('refreshToken');
       return new Promise((resolve, reject) => {
-        axios.post(`${import.meta.env.VITE_API_URL}/auth/refresh`, { token: refreshToken })
+        axios
+          .post(`${import.meta.env.VITE_API_URL}/auth/refresh`, {
+            token: refreshToken,
+          })
           .then(({ data }) => {
-            localStorage.setItem('token', data.token);
-            axiosClient.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
-            processQueue(null, data.token);
+            localStorage.setItem('token', data?.token as string);
+            axiosClient.defaults.headers.common['Authorization'] =
+              'Bearer ' + data.token;
+            processQueue(null, data.token as string);
             resolve(axiosClient(originalRequest));
           })
           .catch((err) => {
-            processQueue(err, null);
+            processQueue(err as null, null);
             localStorage.removeItem('token');
             localStorage.removeItem('refreshToken');
             window.location.replace(LOGIN_PATH);
             reject(err);
           })
-          .finally(() => { isRefreshing = false; });
+          .finally(() => {
+            isRefreshing = false;
+          });
       });
     }
 

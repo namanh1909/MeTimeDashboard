@@ -2,32 +2,19 @@ import {
   Gauge,
   Shirt,
   CircleDollarSign,
-  AlertTriangle,
   ArrowRight,
   Check,
   ChevronLeft,
   ChevronRight,
   Command,
   CreditCard,
-  File,
-  FileText,
-  HelpCircle,
-  Image,
-  Laptop,
-  Loader2,
-  LucideProps,
-  Moon,
-  MoreVertical,
-  Pizza,
   Plus,
   Settings,
-  SunMedium,
   Trash,
-  Twitter,
   User,
   X,
   Sticker,
-  FileImage
+  FileImage,
 } from 'lucide-react';
 
 export type Icon = typeof X;
@@ -48,5 +35,5 @@ export const Icons = {
   arrowRight: ArrowRight,
   check: Check,
   brand: Sticker,
-  fileImage: FileImage
+  fileImage: FileImage,
 };

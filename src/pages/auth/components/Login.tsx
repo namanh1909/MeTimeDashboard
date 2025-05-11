@@ -1,3 +1,6 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -7,14 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import ErrorMessage from '@/components/ui/error';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { loginRequest, loginSchema } from '@/features/auth/schemas';
-import ErrorMessage from '@/components/ui/error';
 import { useAuthQuery } from '@/features/auth/hooks/use-auth-query';
+import { loginSchema } from '@/features/auth/schemas';
+import { loginRequestType } from '@/features/auth/services/type';
 
 const Login = () => {
   const {
@@ -29,9 +31,9 @@ const Login = () => {
     },
   });
 
-  const {loginMutation} = useAuthQuery();
+  const { loginMutation } = useAuthQuery();
 
-  const onSubmit = (data: loginRequest) => {
+  const onSubmit = (data: loginRequestType) => {
     loginMutation.mutate(data);
   };
 
@@ -57,12 +59,20 @@ const Login = () => {
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" type="text" {...register('email')} />
-                  {errors.email && <ErrorMessage message={errors.email.message as string} />}
+                  {errors.email && (
+                    <ErrorMessage message={errors.email.message as string} />
+                  )}
                 </div>
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="password">Password</Label>
-                  <Input id="password" type="password" {...register('password')} />
-                  {errors.password && <ErrorMessage message={errors.password.message as string} />}
+                  <Input
+                    id="password"
+                    type="password"
+                    {...register('password')}
+                  />
+                  {errors.password && (
+                    <ErrorMessage message={errors.password.message as string} />
+                  )}
                 </div>
                 {/* <div className="flex flex-col items-start">
                   <Button variant="link" className="p-0 h-auto">
@@ -72,7 +82,9 @@ const Login = () => {
               </div>
               <CardFooter className="flex justify-between w-full">
                 <div className="w-full">
-                  <Button className="w-full mt-3" type="submit" >Sign In</Button>
+                  <Button className="w-full mt-3" type="submit">
+                    Sign In
+                  </Button>
                 </div>
               </CardFooter>
             </form>
@@ -104,7 +116,7 @@ const Login = () => {
             </form>
           </CardContent>
           <CardFooter className="flex justify-between">
-              <Button className="w-full">Sign In</Button>
+            <Button className="w-full">Sign In</Button>
           </CardFooter>
         </Card>
       </TabsContent>
